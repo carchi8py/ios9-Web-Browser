@@ -60,15 +60,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func backPressed(sender: AnyObject) {
+        webView.goBack()
     }
     
     @IBAction func forwardPressed(sender: AnyObject) {
+        webView.goForward()
     }
     
     @IBAction func zoomOutPressed(sender: AnyObject) {
+        webView.scrollView.zoomScale -= 0.2
     }
     
     @IBAction func zoomInPressed(sender: AnyObject) {
+        webView.scrollView.zoomScale += 0.2
     }
     
 }
