@@ -8,8 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
+    var address: String = String()
+    
     @IBOutlet weak var webAddress: UITextField!
     @IBOutlet weak var webView: UIWebView!
     
@@ -17,13 +19,30 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        webAddress.delegate = self
+        webView.scalesPageToFit = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /***** TextField Delegate Methods *****/
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        //This will make the keyboard go away
+        webAddress.resignFirstResponder()
+        loadWebPage()
+        return true
+    }
+    
+    /***** Helper Functions *****/
+    func loadWebPage() {
+        
+    }
 
+    /***** UI Button Press Methods *****/
     @IBAction func goPressed(sender: AnyObject) {
     }
 
