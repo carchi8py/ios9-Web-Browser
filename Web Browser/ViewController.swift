@@ -39,11 +39,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     /***** Helper Functions *****/
     func loadWebPage() {
-        
+        if webAddress.text != "" {
+            address = address.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            address = self.webAddress.text!
+            if address.hasPrefix("www.") {
+                address = "http://" + address
+            } else if !address.hasPrefix("http://") {
+                address = "http://" + address
+            }
+            let url = NSURL(string: address)
+            let request = NSURLRequest(URL: url!)
+            webView.loadRequest(request)
+        }
     }
 
     /***** UI Button Press Methods *****/
     @IBAction func goPressed(sender: AnyObject) {
+        webAddress.resignFirstResponder()
+        loadWebPage()
     }
 
     @IBAction func backPressed(sender: AnyObject) {
